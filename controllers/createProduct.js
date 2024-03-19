@@ -1,19 +1,13 @@
-import mongoose from "mongoose";
+import { Product } from "../models/productModel.js";
+import { createProductValidation } from "../validation/createProductValidation.js";
 
-const productSchema = new mongoose.Schema({
-	title: { type: String, required: true, unique: true },
-	description: { type: String, required: true, unique: true },
-});
-
-const Product = mongoose.model("Product", productSchema);
-
+// POST /product
 async function createProduct(props) {
 	console.log(props);
 
-	const response = await Product.create({
-		title: "Orangelon",
-		description: "A delicious combination of orange and melon.",
-	});
+	createProductValidation(props);
+
+	const response = await Product.create(props);
 
 	return response;
 }

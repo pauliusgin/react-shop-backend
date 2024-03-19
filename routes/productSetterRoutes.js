@@ -14,10 +14,18 @@ router.post("/", async (req, res) => {
 	}
 });
 
-// POST /product/:id
-router.patch("/:id", (req, res) => {
-	const data = editProduct();
-	res.send(data);
+// PATCH /product/:id
+router.patch("/:id", async (req, res) => {
+	try {
+		const update = req.body;
+		const id = req.params.id;
+		const data = await editProduct(id, update);
+		console.log(data);
+		res.json(data);
+	} catch (error) {
+		console.log("Error while creating product:", error.message);
+		res.status(400).json(`Error: ${error.message}`);
+	}
 });
 
 export default router;
