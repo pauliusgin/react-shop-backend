@@ -7,7 +7,8 @@ const router = Router();
 router.post("/", async (req, res) => {
 	try {
 		const data = await createProduct(req.body);
-		res.json(data);
+		console.log(data);
+		res.status(201).json(data);
 	} catch (error) {
 		console.log("Error while creating product:", error.message);
 		res.status(400).json(`Error: ${error.message}`);
@@ -19,9 +20,10 @@ router.patch("/:id", async (req, res) => {
 	try {
 		const update = req.body;
 		const id = req.params.id;
+
 		const data = await editProduct(id, update);
-		console.log(data);
-		res.json(data);
+
+		res.status(201).json(data);
 	} catch (error) {
 		console.log("Error while creating product:", error.message);
 		res.status(400).json(`Error: ${error.message}`);
