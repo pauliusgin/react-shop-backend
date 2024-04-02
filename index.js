@@ -6,6 +6,7 @@ import "dotenv/config";
 // routes
 import productGetterRoutes from "./routes/productGetter.routes.js";
 import productSetterRoutes from "./routes/productSetter.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use("/product", productGetterRoutes);
 app.use("/product", productSetterRoutes);
+app.use("/user", userRoutes);
 
 app.get("/", (_, res) => res.send("Express on Vercel"));
 

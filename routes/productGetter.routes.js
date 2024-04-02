@@ -8,7 +8,6 @@ router.get("/", async (_, res) => {
 	try {
 		const data = await getAllProducts();
 		res.status(200).json(data);
-		console.log("Products retrieved successfully.");
 	} catch (error) {
 		console.log("Error while retrieving products:", error.message);
 		res.status(400).json(`Error: ${error.message}`);

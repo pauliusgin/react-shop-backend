@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { createProduct, editProduct } from "../controllers/index.js";
+import { verifyJWT } from "../middleware/verifyJWT.js";
 
 const router = Router();
 
 // POST /product
-router.post("/", async (req, res) => {
+router.post("/", verifyJWT, async (req, res) => {
 	try {
 		const data = await createProduct(req.body);
 		console.log(data);
